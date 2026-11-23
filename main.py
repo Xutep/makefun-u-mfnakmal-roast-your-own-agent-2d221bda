@@ -27,6 +27,9 @@ def main() -> None:
     os.makedirs(out_dir, exist_ok=True)
     with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as f:
         f.write(roast + "\n")
+    # Read it back: the file must hold exactly the roast and one newline.
+    with open(os.path.join(out_dir, "entry.txt"), encoding="utf-8") as f:
+        assert f.read() == roast + "\n", "entry.txt must contain only the roast"
 
 
 if __name__ == "__main__":
